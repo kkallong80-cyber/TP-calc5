@@ -1,3 +1,17 @@
+<!--
+ * ==============================================================================
+ * Project: Transporter Pressure Deviation Ratio Calculator (4-Point System)
+ * File: index.html (Final Balanced Version)
+ * Author: Wonbo Choi (최원보 / sjw4266@hd.com)
+ * Date Created: 2026.07.16
+ * Copyright (c) 2026 Wonbo Choi. All rights reserved.
+ * 
+ * NOTICE: This software and its proprietary algorithms (including 4-point COG offsets 
+ * and cabin cross-mode transformation) are the intellectual property of Wonbo Choi.
+ * Unauthorized copying, distribution, or modifications of this file without the 
+ * express written consent of the author are strictly prohibited and subject to legal action.
+ * ==============================================================================
+-->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -267,6 +281,33 @@
         .stat-row:last-child { border-bottom: none; }
         .stat-label { color: var(--muted); font-weight: normal; }
         .stat-value { font-family: var(--mono); color: var(--text); }
+        
+        /* 어플리케이션 하단 라이선스 및 크레딧 스타일 */
+        .app-footer {
+            margin-top: 24px;
+            text-align: center;
+            border-top: 1px dashed var(--border);
+            padding: 20px 0 10px;
+        }
+        .copyright-text {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+        .developer-badge {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(0, 200, 255, 0.06);
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -462,12 +503,25 @@
             <div class="stat-row"><span class="stat-label">최대 편차 폭 (Max-Min)</span><span class="stat-value" id="statDiff">—</span></div>
         </div>
     </div>
+    
+    <!-- 하단 라이선스 및 지식재산 저작권 박스 -->
+    <div class="app-footer">
+        <p class="copyright-text">
+            © 2026. Wonbo Choi. All rights reserved.<br>
+            <span class="developer-badge">App Logic & Architecture: Wonbo Choi (최원보)</span>
+        </p>
+    </div>
 </div>
 
 <script>
 let currentCabinMode = 'front';
 let globalEmailData = null;
 
+/* 
+ * [SECURITY/IP PROTECTED SYSTEM]
+ * Theme Switcher Logic
+ * Author: Wonbo Choi (최원보)
+ */
 function toggleTheme() {
     const body = document.body;
     const btn = document.getElementById('themeBtn');
@@ -579,6 +633,12 @@ function getGroupLabel(val, A, B, C, D) {
     return matches.join('/');
 }
 
+/* 
+ * [PROPRIETARY MATHEMATICAL ALGORITHM]
+ * 4-Point Hydraulic Load & COG Offset Engine
+ * Developed by: Wonbo Choi (최원보)
+ * Strict Confidentiality Protected.
+ */
 function runCalculate() {
     const errEl = document.getElementById('errorMsg');
     const resultEl = document.getElementById('resultSection');
@@ -785,7 +845,7 @@ function runCalculate() {
 function generateEmailBodyText() {
     if (!globalEmailData) return "";
     return [
-        `현대중공업 중장비 트랜스포터 안전 관리 시스템 결과`,
+        `현대중공업 중장비 트랜스포터 안전 관리 시스템 결과 (보고자: 최원보)`,
         ``,
         `■ 측정 장비 : ${globalEmailData.vehicle} [${globalEmailData.mode}]`,
         `■ 모니터 실린더 압력값 [bar]`,
